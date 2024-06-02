@@ -1,3 +1,4 @@
+import chalk from "chalk";
 import morgan from "morgan";
 import { createLogger, format, transports } from "winston";
 import "winston-daily-rotate-file";
@@ -38,6 +39,28 @@ export const systemLogs = createLogger({
     }),
   ],
 });
+
+const customFormat = format.printf(({ level, message }) => {
+  if (level === "info") {
+    return `${level}: ${chalk.green(message)}`;
+  } else if (level === "error") {
+    return `${level}: ${chalk.red(message)}`;
+  } else if (level === "warn") {
+    return `${level}: ${chalk.yellow(message)}`;
+  } else if (level === "debug") {
+    return `${level}: ${chalk.gray(message)}`;
+  } else {
+    return `${level}: ${chalk.blue(message)}`;
+  }
+});
+
+if (process.env.NODE_ENV !== "production") {
+  systemLogs.add(
+    new transports.Console({
+      format: customFormat,
+    })
+  );
+}
 
 export const morganMiddleware = morgan(
   function (tokens, req, res) {

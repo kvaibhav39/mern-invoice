@@ -5,6 +5,9 @@ import express from "express";
 import morgan from "morgan";
 import { morganMiddleware, systemLogs } from "./utils/logger.js";
 
+import connectionToDB from "./config/connectDB.js";
+
+await connectionToDB();
 const app = express();
 
 if (process.env.NODE_ENV === "development") {
