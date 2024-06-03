@@ -45,7 +45,7 @@ const userSchema = new Schema(
       trim: true,
       validate: [
         validator.isAlphanumeric,
-        "First name must be alphanumeric value. No special characters allowed",
+        "Last name must be alphanumeric value. No special characters allowed",
       ],
     },
 
