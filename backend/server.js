@@ -8,6 +8,7 @@ import mongoSanitize from "express-mongo-sanitize";
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 
 import connectionToDB from "./config/connectDB.js";
+import authRoutes from "./routes/authRoutes.js";
 
 await connectionToDB();
 const app = express();
@@ -26,6 +27,8 @@ app.use(morganMiddleware);
 app.get("/api/v1/test", (req, res) => {
   res.json({ message: "Hello World!" });
 });
+
+app.use("/api/v1/auth", authRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
