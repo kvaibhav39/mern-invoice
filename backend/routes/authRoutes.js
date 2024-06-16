@@ -5,7 +5,7 @@ import loginUser from "../controllers/auth/loginController.js";
 import { loginLimiter } from "../middleware/apiLimiter.js";
 import newAccessToken from "../controllers/auth/refreshTokenController.js";
 import resendEmailVerificationToken from "../controllers/auth/resendVerifyEmailController.js";
-// import logoutUser from "../controllers/auth/logoutController.js";
+import logoutUser from "../controllers/auth/logoutController.js";
 // import passport from "passport";
 // import jwt from "jsonwebtoken";
 // import User from "../models/userModel.js";
@@ -31,7 +31,7 @@ router.post("/reset_password_request", resetPasswordRequest);
 
 router.post("/reset_password", resetPassword);
 
-// router.get("/logout", logoutUser);
+router.get("/logout", logoutUser);
 
 // router.get(
 //   "/google",
